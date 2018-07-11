@@ -2,7 +2,7 @@
 
 An attempt to make Unity projects more consistent.
 
-Heavily inspired by the [Unreal Style Guide] http://ue4.style by Michael Allar.
+Heavily inspired by the [Unreal Style Guide]http://ue4.style by Michael Allar.
 
 ## Discuss This Style Guide
 
