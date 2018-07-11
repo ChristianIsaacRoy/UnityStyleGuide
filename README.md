@@ -164,17 +164,11 @@ When naming an asset use these tables to determine the prefix and suffix to use 
 
 > 1.2.2 [Animations](#anc-animations)
 
-> 1.2.3 [Artificial Intelligence](#anc-ai)
-
-> 1.2.4 [Blueprints](#anc-bp)
-
 > 1.2.5 [Materials](#anc-materials)
 
 > 1.2.6 [Textures](#anc-textures)
 
 > 1.2.7 [Miscellaneous](#anc-misc)
-
-> 1.2.8 [Paper 2D](#anc-paper2d)
 
 > 1.2.9 [Physics](#anc-physics)
 
@@ -186,73 +180,26 @@ When naming an asset use these tables to determine the prefix and suffix to use 
 
 <a name="anc-common"></a>
 <a name="1.2.1"></a>
-#### 1.2.1 Most Common ![#](https://img.shields.io/badge/lint-supported-green.svg)
+#### 1.2.1 Most Common
 
 | Asset Type              | Prefix     | Suffix     | Notes                            |
 | ----------------------- | ---------- | ---------- | -------------------------------- |
-| Level / Map             |            |            | [Should be in a folder called Maps.](#2.4) |
-| Level (Persistent)      |            | _P         |                                  |
-| Level (Audio)           |            | _Audio     |                                  |
-| Level (Lighting)        |            | _Lighting  |                                  |
-| Level (Geometry)        |            | _Geo       |                                  |
-| Level (Gameplay)        |            | _Gameplay  |                                  |
-| Blueprint               | BP_        |            |                                  |
+| Level / Scene           |            |            | [Should be in a folder called Scenes.](#2.4) |
+| Prefab                  | PF_        |            |                                  |
 | Material                | M_         |            |                                  |
-| Static Mesh             | S_         |            | Many use SM_. We use S_.         |
-| Skeletal Mesh           | SK_        |            |                                  |
 | Texture                 | T_         | _?         | See [Textures](#anc-textures)    |
-| Particle System         | PS_        |            |                                  |
-| Widget Blueprint        | WBP_       |            |                                  |
+| Script                  | S_         |            |                                  |
+| ScriptableObject        | SO_        |            |                                  |
 
 <a name="anc-animations"></a>
 <a name="1.2.2"></a>
-#### 1.2.2 Animations ![#](https://img.shields.io/badge/lint-supported-green.svg)
+#### 1.2.2 Animations
 
 | Asset Type              | Prefix     | Suffix     | Notes                            |
 | ----------------------- | ---------- | ---------- | -------------------------------- |
-| Aim Offset              | AO_        |            |                                  |
-| Aim Offset 1D           | AO_        |            |                                  |
-| Animation Blueprint     | ABP_       |            |                                  |
-| Animation Composite     | AC_        |            |                                  |
-| Animation Montage       | AM_        |            |                                  |
-| Animation Sequence      | A_         |            |                                  |
-| Blend Space             | BS_        |            |                                  |
-| Blend Space 1D          | BS_        |            |                                  |
-| Level Sequence          | LS_        |            |                                  |
-| Morph Target            | MT_        |            |                                  |
-| Paper Flipbook          | PFB_       |            |                                  |
-| Rig                     | Rig_       |            |                                  |
-| Skeletal Mesh           | SK_        |            |                                  |
-| Skeleton                | SKEL_      |            |                                  |
+| Animation Controller    | AC_        |            |                                  |
+| Animation               | A_         |            |                                  |
 
-<a name="anc-ai"></a>
-<a name="1.2.3"></a>
-### 1.2.3 Artificial Intelligence ![#](https://img.shields.io/badge/lint-supported-green.svg)
-
-| Asset Type              | Prefix     | Suffix     | Notes                            |
-| ----------------------- | ---------- | ---------- | -------------------------------- |
-| AI Controller           | AIC_       |            |                                  |
-| Behavior Tree           | BT_        |            |                                  |
-| Blackboard              | BB_        |            |                                  |
-| Decorator               | BTDecorator_ |          |                                  |
-| Service                 | BTService_ |            |                                  |
-| Task                    | BTTask_    |            |                                  |
-
-<a name="anc-bp"></a>
-<a name="1.2.4"></a>
-### 1.2.4 Blueprints ![#](https://img.shields.io/badge/lint-supported-green.svg)
-
-| Asset Type              | Prefix     | Suffix     | Notes                            |
-| ----------------------- | ---------- | ---------- | -------------------------------- |
-| Blueprint               | BP_        |            |                                  |
-| Blueprint Component	  | BP_	       | Component  | I.e. BP_InventoryComponent       |
-| Blueprint Function Library | BPFL_   |            |                                  |
-| Blueprint Interface     | BPI_       |            |                                  |
-| Blueprint Macro Library | BPML_      |            | Do not use macro libraries if possible. |
-| Enumeration             | E          |            | No underscore.                   |
-| Structure               | F or S     |            | No underscore.                   |
-| Tutorial Blueprint      | TBP_       |            |                                  |
-| Widget Blueprint        | WBP_       |            |                                  |
 
 <a name="anc-materials"></a>
 <a name="1.2.5"></a>
@@ -302,7 +249,7 @@ Packing 4 channels of data into a texture (RGBA) is not recommended except for a
 
 <a name="anc-misc"></a>
 <a name="1.2.7"></a>
-### 1.2.7 Miscellaneous ![#](https://img.shields.io/badge/lint-supported-green.svg)
+### 1.2.7 Miscellaneous 
 
 | Asset Type              | Prefix     | Suffix     | Notes                            |
 | ----------------------- | ---------- | ---------- | -------------------------------- |
@@ -326,21 +273,9 @@ Packing 4 channels of data into a texture (RGBA) is not recommended except for a
 | Touch Interface Setup   | TI_        |            |                                  |
 | Vector Curve            | Curve_     | _Vector    |                                  |
 
-<a name="anc-paper2d"></a>
-<a name="1.2.8"></a>
-### 1.2.8 Paper 2D ![#](https://img.shields.io/badge/lint-supported-green.svg)
-
-| Asset Type              | Prefix     | Suffix     | Notes                            |
-| ----------------------- | ---------- | ---------- | -------------------------------- |
-| Paper Flipbook          | PFB_       |            |                                  |
-| Sprite                  | SPR_       |            |                                  |
-| Sprite Atlas Group      | SPRG_      |            |                                  |
-| Tile Map                | TM_        |            |                                  |
-| Tile Set                | TS_        |            |                                  |
-
 <a name="anc-physics"></a>
 <a name="1.2.9"></a>
-### 1.2.9 Physics ![#](https://img.shields.io/badge/lint-supported-green.svg)
+### 1.2.9 Physics 
 
 | Asset Type              | Prefix     | Suffix     | Notes                            |
 | ----------------------- | ---------- | ---------- | -------------------------------- |
@@ -350,7 +285,7 @@ Packing 4 channels of data into a texture (RGBA) is not recommended except for a
 
 <a name="anc-sounds"></a>
 <a name="1.2.10"></a>
-### 1.2.10 Sounds ![#](https://img.shields.io/badge/lint-supported-green.svg)
+### 1.2.10 Sounds
 
 | Asset Type              | Prefix     | Suffix     | Notes                            |
 | ----------------------- | ---------- | ---------- | -------------------------------- |
@@ -367,7 +302,7 @@ Packing 4 channels of data into a texture (RGBA) is not recommended except for a
 
 <a name="anc-ui"></a>
 <a name="1.2.11"></a>
-### 1.2.11 User Interface ![#](https://img.shields.io/badge/lint-supported-green.svg)
+### 1.2.11 User Interface 
 
 | Asset Type              | Prefix     | Suffix     | Notes                            |
 | ----------------------- | ---------- | ---------- | -------------------------------- |
@@ -378,7 +313,7 @@ Packing 4 channels of data into a texture (RGBA) is not recommended except for a
 
 <a name="anc-effects"></a>
 <a name="1.2.12"></a>
-### 1.2.12 Effects ![#](https://img.shields.io/badge/lint-supported-green.svg)
+### 1.2.12 Effects 
 
 | Asset Type              | Prefix     | Suffix     | Notes                            |
 | ----------------------- | ---------- | ---------- | -------------------------------- |
@@ -387,7 +322,7 @@ Packing 4 channels of data into a texture (RGBA) is not recommended except for a
 
 <a name="2"></a>
 <a name="structure"></a>
-## 2. Content Directory Structure ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
+## 2. Content Directory Structure 
 
 Equally important as asset names, the directory structure style of a project should be considered law. Asset naming conventions and content directory structure go hand in hand, and a violation of either causes unneeded chaos.
 
