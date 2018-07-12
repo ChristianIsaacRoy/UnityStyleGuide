@@ -17,62 +17,51 @@ For example, if you want to send someone to the first principle of this style gu
 
 If you have made a notable fork or translation that is not suitable for a pull request into this repo, please submit a pull request to add the fork or translation here.
 
+<a name="toc"></a>
+## Table of Contents
 
+> 1. [Introduction](#intro)
+> 1. [Asset Naming Conventions](#anc)
+> 1. [Directory Structure](#structure)
+> 1. [Prefabs](#pf)
 
-## Important Terminology
+<a name="0"></a>
+<a name="intro"></a>
+## 0. Introduction
 
-<a name="terms-level-map"></a>
-#### Levels/Scenes
+<a name="terms"></a>
+### 0.1 Terminology
 
-The word 'scene' generally refers to what the average person calls a 'level' and may be used interchangeably.
+**Levels/Scenes** - The word 'scene' generally refers to what the average person calls a 'level' and may be used interchangeably.
 
-<a name="terms-cases"></a>
-#### Cases
+**Cases** - There are a few different ways you can name things. Here are some common casing types:
 
-There are a few different ways you can name things. Here are some common casing types:
-
-###### PascalCase
+>**PascalCase** - Capitalize every word and remove all spaces, e.g. `DesertEagle`, `StyleGuide`, `ASeriesOfWords`.
+>	
+>**camelCase** - The first letter is always lowercase but every following word starts with uppercase, e.g. `desertEagle`, `styleGuide`, `aSeriesOfWords`.
 >
-> Capitalize every word and remove all spaces, e.g. `DesertEagle`, `StyleGuide`, `ASeriesOfWords`.
-> 
-###### camelCase
->
-> The first letter is always lowercase but every following word starts with uppercase, e.g. `desertEagle`, `styleGuide`, `aSeriesOfWords`.
->
-###### Snake_case
->
-> Words can arbitrarily start upper or lowercase but words are separated by an underscore, e.g. `desert_Eagle`, `Style_Guide`, `a_Series_of_Words`.
+>**Snake_case** - Words can arbitrarily start upper or lowercase but words are separated by an underscore, e.g. `desert_Eagle`, `Style_Guide`, `a_Series_of_Words`.
 
-<a name="terms-var-prop"></a>
-#### Variables / Properties
+**Variables / Properties** - The words 'variable' and 'property' in most contexts are interchangable. If they are both used together in the same context however:
 
-The words 'variable' and 'property' in most contexts are interchangable. If they are both used together in the same context however:
-
-<a name="terms-property"></a>
-###### Property
+>**Property** -
 > C# Properties enable a class to expose a public way of getting and setting values, while hiding implementation or verification code. For more about C# properties see [https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/properties](MSDN).
 >
 > When in the context of a class, often used to imply accessing previously defined data.
-
-<a name="terms-instance-variable"></a>
-###### Instance Variable
+>
+>**Instance Variable** -
 > Usually refers to a variable defined in a class. For example, if a script `S_Barrel` had a variable `_exploded`, `_exploded` may be referred to as a property of `S_Barrel`. 
->
 > When in the context of a class, often used to imply accessing previously defined data.
-
-<a name="terms-local-variable"></a>
-###### Local Variable
-> Usually refers to a variable defined as a function argument or a local variable inside a function.
 >
+>**Local Variable** -
+> Usually refers to a variable defined as a function argument or a local variable inside a function.
 > When in the context of a class, often used to convey discussion about its definition and what it will hold.
 
-<a name="0"></a>
-## 0. Principles
+### 0.2 Principles
 
 These principles have been adapted from [idomatic.js style guide](https://github.com/rwaldron/idiomatic.js/).
 
-<a name="0.1"></a>
-#### 0.1 If your Unity project already has a style guide, you should follow it.
+#### 0.2.1 If your Unity project already has a style guide, you should follow it.
 
 If you are working on a project or with a team that has a pre-existing style guide, it should be respected.  Any inconsistency between an existing style guide and this guide should defer to the existing.
 
@@ -80,15 +69,13 @@ Style guides should be living documents however and you should propose style gui
 
 > ##### "Arguments over style are pointless. There should be a style guide, and you should follow it." - [_Rebecca Murphey_](https://rmurphey.com)
 
-<a name="0.2"></a>
-#### 0.2 All structure, assets, and code in any Unity Engine project should look like a single person created it, no matter how many people contributed.
+#### 0.2.2 All structure, assets, and code in any Unity Engine project should look like a single person created it, no matter how many people contributed.
 
 Moving from one project to another should not cause a re-learning of style and structure. Conforming to a style guide removes unneeded guesswork and ambiguities.
 
 It also allows for more productive creation and maintenance as one does not need to think about style, simply follow instructions. This style guide is written with best practices in mind, meaning that by following this style guide you will also minimize hard to track issues.
 
-<a name="0.3"></a>
-#### 0.3 Friends do not let friends have bad style.
+#### 0.2.3 Friends do not let friends have bad style.
 
 If you see someone working either against a style guide or no style guide, try to correct them.
 
@@ -96,17 +83,9 @@ When working within a team, it is far easier to help and to ask for help then de
 
 If you are helping someone who's work conforms to a different but consistent and sane style guide, you should be able to adapt to it. If they do not conform to any style guide, please direct them here.
 
-<a name="0.4"></a>
-#### 0.4 A team without a style guide is no team of mine.
+#### 0.2.4 A team without a style guide is no team of mine.
 
 When joining a Unity team one of your first questions should be "Do you have a style guide?". If the answer is no, you should direct them here **_AND_** be skeptical about their ability to work as a team.
-
-<a name="toc"></a>
-## Table of Contents
-
-> 1. [Asset Naming Conventions](#anc)
-> 1. [Directory Structure](#structure)
-> 1. [Blueprints](#bp)
 
 <a name="anc"></a>
 <a name="1"></a>
@@ -313,9 +292,6 @@ Packing 4 channels of data into a texture (RGBA) is not recommended except for a
 | Asset Type              | Prefix     | Suffix     | Notes                            |
 | ----------------------- | ---------- | ---------- | -------------------------------- |
 | Font                    | Font_      |            |                                  |
-| Slate Brush             | Brush_     |            |                                  |
-| Slate Widget Style      | Style_     |            |                                  |
-| Widget Blueprint        | WBP_       |            |                                  |
 
 <a name="anc-effects"></a>
 <a name="1.2.12"></a>
@@ -587,7 +563,7 @@ If you find that the content browser has an empty folder you can't delete, you s
 1. Submit changes to source control.
 
 <a name="3"></a>
-<a name="bp"></a>
+<a name="pf"></a>
 ## 3. Prefabs
 
 This section will focus on Prefab classes and their internals.
