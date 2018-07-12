@@ -503,31 +503,31 @@ Example: Do **not** use `_running` if you also need `_walking` or `_sprinting`. 
 
 #### 3.1.6 Redudency with Considered Context 
 
-All variable names must not be redundant with their context as all variable references in Blueprint will always have context.
+All variable names must not be redundant with their context as all variable references in script will always have context.
 
 **Example:**
 
-Consider a Blueprint called `BP_PlayerCharacter`.
+Consider a script called `S_PlayerCharacter`.
 
 >**Bad**
 >
->* `PlayerScore`
->* `PlayerKills`
->* `MyTargetPlayer`
->* `MyCharacterName`
->* `CharacterSkills`
->* `ChosenCharacterSkin`
+>* `_playerScore`
+>* `_playerKills`
+>* `myTargetPlayer`
+>* `myCharacterName`
+>* `characterSkills`
+>* `chosenCharacterSkin`
 
-All of these variables are named redundantly. It is implied that the variable is representative of the `BP_PlayerCharacter` it belongs to because it is `BP_PlayerCharacter` that is defining these variables.
+All of these variables are named redundantly. It is implied that the variable is representative of the `S_PlayerCharacter` it belongs to because it is `S_PlayerCharacter` that is defining these variables.
 
 >**Good**
 >
->* `Score`
->* `Kills`
->* `TargetPlayer`
->* `Name`
->* `Skills`
->* `Skin`
+>* `_score`
+>* `_kills`
+>* `targetPlayer`
+>* `name`
+>* `skills`
+>* `skin`
 
 #### 3.1.7 Do _Not_ Include Atomic Type Names 
 
