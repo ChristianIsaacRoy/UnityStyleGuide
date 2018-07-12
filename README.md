@@ -23,7 +23,8 @@ If you have made a notable fork or translation that is not suitable for a pull r
 > 1. [Introduction](#intro)
 > 1. [Asset Naming Conventions](#anc)
 > 1. [Directory Structure](#structure)
-> 1. [Prefabs](#pf)
+> 1. [Scripting](#scripting)
+> 1. [Prefabs](#prefabs)
 
 <a name="0"></a>
 <a name="intro"></a>
@@ -120,7 +121,7 @@ Depending on how your asset variants are made, you can chain together variant na
 
 | Asset Type              | Asset Name                                                 |
 | ----------------------- | ---------------------------------------------------------- |
-| Skeletal Mesh           | SK_Bob                                                     |
+| Mesh                    | O_Bob                                                      |
 | Material                | M_Bob                                                      |
 | Texture (Diffuse/Albedo)| T_Bob_D                                                    |
 | Texture (Normal)        | T_Bob_N                                                    |
@@ -130,11 +131,10 @@ Depending on how your asset variants are made, you can chain together variant na
 
 | Asset Type              | Asset Name                                                 |
 | ----------------------- | ---------------------------------------------------------- |
-| Static Mesh (01)        | S_Rock_01                                                  |
-| Static Mesh (02)        | S_Rock_02                                                  |
-| Static Mesh (03)        | S_Rock_03                                                  |
+| Mesh (01)               | O_Rock_01                                                  |
+| Mesh (02)               | O_Rock_02                                                  |
+| Mesh (03)               | O_Rock_03                                                  |
 | Material                | M_Rock                                                     |
-| Material Instance (Snow)| MI_Rock_Snow                                               |
 
 <a name="asset-name-modifiers"></a>
 <a name="1.2"></a>
@@ -146,21 +146,7 @@ When naming an asset use these tables to determine the prefix and suffix to use 
 
 > 1.2.1 [Most Common](#anc-common)
 
-> 1.2.2 [Animations](#anc-animations)
-
-> 1.2.5 [Materials](#anc-materials)
-
-> 1.2.6 [Textures](#anc-textures)
-
-> 1.2.7 [Miscellaneous](#anc-misc)
-
-> 1.2.9 [Physics](#anc-physics)
-
-> 1.2.10 [Sound](#anc-sound)
-
-> 1.2.11 [User Interface](#anc-ui)
-
-> 1.2.12 [Effects](#anc-effects)
+> 1.2.2 [Textures](#anc-textures)
 
 <a name="anc-common"></a>
 <a name="1.2.1"></a>
@@ -168,41 +154,21 @@ When naming an asset use these tables to determine the prefix and suffix to use 
 
 | Asset Type              | Prefix     | Suffix     | Notes                            |
 | ----------------------- | ---------- | ---------- | -------------------------------- |
-| Level / Scene           |            |            | [Should be in a folder called Scenes.](#2.4) |
+| Level / Scene           |            |            | [Should be in the Scenes folder](#2.4) |
 | Prefab                  | PF_        |            |                                  |
-| Material                | M_  / ?_   |            | See [Materials](#anc-materials)  |
-| Texture                 | T_         | _?         | See [Textures](#anc-textures)    |
+| Material                | M_  / ?_   |            |                                  |
+| Texture                 | T_         | _?         | [See Textures](#anc-textures)    |
 | Script                  | S_         |            |                                  |
 | ScriptableObject        | SO_        |            |                                  |
 | Shader                  | SH_        |            |                                  |
 | Mesh / .FBX / .OBJ      | O_         |            |                                  |
-
-<a name="anc-animations"></a>
-<a name="1.2.2"></a>
-#### 1.2.2 Animations
-
-| Asset Type              | Prefix     | Suffix     | Notes                            |
-| ----------------------- | ---------- | ---------- | -------------------------------- |
+| Audio Files / .WAV      | A_         |            |                                  |
 | Animation Controller    | AC_        |            |                                  |
-| Animation               | A_         |            |                                  |
-
-<a name="anc-materials"></a>
-<a name="1.2.5"></a>
-### 1.2.5 Materials 
-
-| Asset Type              | Prefix     | Suffix     | Notes                            |
-| ----------------------- | ---------- | ---------- | -------------------------------- |
-| Material                | M_         |            |                                  |
-| Material (Post Process) | PP_        |            |                                  |
-| Material Function       | MF_        |            |                                  |
-| Material Instance       | MI_        |            |                                  |
-| Material Parameter Collection | MPC_ |            |                                  |
-| Subsurface Profile      | SP_        |            |                                  |
-| Physical Materials      | PM_        |            |                                  |
+| Animation               | AN_        |            |                                  |
 
 <a name="anc-textures"></a>
-<a name="1.2.6"></a>
-### 1.2.6 Textures 
+<a name="1.2.2"></a>
+### 1.2.2 Textures 
 
 | Asset Type              | Prefix     | Suffix     | Notes                            |
 | ----------------------- | ---------- | ---------- | -------------------------------- |
@@ -222,85 +188,6 @@ When naming an asset use these tables to determine the prefix and suffix to use 
 | Render Target           | RT_        |            |                                  |
 | Cube Render Target      | RTC_       |            |                                  |
 | Texture Light Profile   | TLP        |            |                                  |
-
-<a name="anc-textures-packing"></a>
-<a name="1.2.6.1"></a>
-#### 1.2.6.1 Texture Packing 
-It is common practice to pack multiple layers of texture data into one texture. An example of this is packing Emissive, Roughness, Ambient Occlusion together as the Red, Green, and Blue channels of a texture respectively. To determine the suffix, simply stack the given suffix letters from above together, e.g. `_ERO`.
-
-> It is generally acceptable to include an Alpha/Opacity layer in your Diffuse/Albedo's alpha channel and as this is common practice, adding `A` to the `_D` suffix is optional.
-
-Packing 4 channels of data into a texture (RGBA) is not recommended except for an Alpha/Opacity mask in the Diffuse/Albedo's alpha channel as a texture with an alpha channel incurs more overhead than one without.
-
-<a name="anc-misc"></a>
-<a name="1.2.7"></a>
-### 1.2.7 Miscellaneous 
-
-| Asset Type              | Prefix     | Suffix     | Notes                            |
-| ----------------------- | ---------- | ---------- | -------------------------------- |
-| Animated Vector Field   | VFA_       |            |                                  |
-| Camera Anim             | CA_        |            |                                  |
-| Color Curve             | Curve_     | _Color     |                                  |
-| Curve Table             | Curve_     | _Table     |                                  |
-| Data Asset              | *_         |            | Prefix should be based on class. |
-| Data Table              | DT_        |            |                                  |
-| Float Curve             | Curve_     | _Float     |                                  |
-| Foliage Type            | FT_        |            |                                  |
-| Force Feedback Effect   | FFE_       |            |                                  |
-| Landscape Grass Type    | LG_        |            |                                  |
-| Landscape Layer         | LL_        |            |                                  |
-| Matinee Data            | Matinee_   |            |                                  |
-| Media Player            | MP_        |            |                                  |
-| Object Library          | OL_        |            |                                  |
-| Redirector              |            |            | These should be fixed up ASAP.   |
-| Sprite Sheet            | SS_        |            |                                  |
-| Static Vector Field     | VF_        |            |                                  |
-| Touch Interface Setup   | TI_        |            |                                  |
-| Vector Curve            | Curve_     | _Vector    |                                  |
-
-<a name="anc-physics"></a>
-<a name="1.2.9"></a>
-### 1.2.9 Physics 
-
-| Asset Type              | Prefix     | Suffix     | Notes                            |
-| ----------------------- | ---------- | ---------- | -------------------------------- |
-| Physical Material       | PM_        |            |                                  |
-| Physical Asset	  | PHYS_      |            |                                  |
-| Destructible Mesh       | DM_        |            |                                  |
-
-<a name="anc-sounds"></a>
-<a name="1.2.10"></a>
-### 1.2.10 Sounds
-
-| Asset Type              | Prefix     | Suffix     | Notes                            |
-| ----------------------- | ---------- | ---------- | -------------------------------- |
-| Dialogue Voice          | DV_        |            |                                  |
-| Dialogue Wave           | DW_        |            |                                  |
-| Media Sound Wave        | MSW_       |            |                                  |
-| Reverb Effect           | Reverb_    |            |                                  |
-| Sound Attenuation       | ATT_       |            |                                  |
-| Sound Class             |            |            | No prefix/suffix. Should be put in a folder called SoundClasses |
-| Sound Concurrency       |            | _SC        | Should be named after a SoundClass |
-| Sound Cue               | A_         | _Cue       |                                  |
-| Sound Mix               | Mix_       |            |                                  |
-| Sound Wave              | A_         |            |                                  |
-
-<a name="anc-ui"></a>
-<a name="1.2.11"></a>
-### 1.2.11 User Interface 
-
-| Asset Type              | Prefix     | Suffix     | Notes                            |
-| ----------------------- | ---------- | ---------- | -------------------------------- |
-| Font                    | Font_      |            |                                  |
-
-<a name="anc-effects"></a>
-<a name="1.2.12"></a>
-### 1.2.12 Effects 
-
-| Asset Type              | Prefix     | Suffix     | Notes                            |
-| ----------------------- | ---------- | ---------- | -------------------------------- |
-| Particle System         | PS_        |            |                                  |
-| Material (Post Process) | PP_        |            |                                  |
 
 <a name="2"></a>
 <a name="structure"></a>
@@ -562,564 +449,326 @@ If you find that the content browser has an empty folder you can't delete, you s
 1. Ensure the folder is now gone.
 1. Submit changes to source control.
 
-<a name="3"></a>
-<a name="pf"></a>
-## 3. Prefabs
 
-This section will focus on Prefab classes and their internals.
+<a name="3"></a>
+<a name="scripting"></a>
+## 3. Scripting
 
 ### Sections
 
-> 3.1 [Compiling](#pf-compiling)
+> 3.1 [Variables](#scripting-vars)
 
-> 3.2 [Variables](#bp-vars)
+> 3.2 [Functions](#scripting-funcs)
 
-> 3.3 [Functions](#bp-functions)
+<a name="scripting-vars"></a>
+### 3.1 Variables
 
-> 3.4 [Graphs](#bp-graphs)
-
-<a name="3.1"></a>
-<a name="pf-compiling"></a>
-### 3.1 Compiling
-
-All prefabs should compile with zero warnings and zero errors. You should fix prefab warnings and errors immediately as they can quickly cascade into very scary unexpected behavior.
-
-Do *not* submit broken prefabs to source control. If you must store them on source control, shelve them instead.
-
-Broken prefabs can cause problems that manifest in other ways, such as broken references, unexpected behavior, cooking failures, and frequent unneeded recompilation. A broken prefab has the power to break your entire game.
-
-<a name="3.2"></a>
-<a name="pf-vars"></a>
-### 3.2 Variables
-
-#### Sections
-
-> 3.2.1 [Naming](#pf-var-naming)
-
-> 3.2.2 [Editable](#bp-vars-editable)
-
-> 3.2.3 [Categories](#bp-vars-categories)
-
-> 3.2.4 [Access](#bp-vars-access)
-
-> 3.2.5 [Advanced](#bp-vars-advanced)
-
-> 3.2.6 [Transient](#bp-vars-transient)
-
-> 3.2.7 [Config](#bp-vars-config)
-
-<a name="3.2.1"></a>
-<a name="pf-var-naming"></a>
-#### 3.2.1 Naming 
-
-<a name="3.2.1.1"></a>
-<a name="bp-var-naming-nouns"></a>
-##### 3.2.1.1 Nouns 
+#### 3.1.1 Nouns
 
 All non-boolean variable names must be clear, unambiguous, and descriptive nouns.
 
-<a name="3.2.1.2"></a>
-<a name="bp-var-naming-case"></a>
-##### 3.2.1.2 PascalCase
+#### 3.1.2 camelCase
 
-All non-boolean variables should be in the form of [PascalCase](#terms-cases).
+All non-boolean variables should be in the form of [camelCase](#terms).
 
-<a name="3.2.1.2e"></a>
-###### 3.2.1.2e Examples:
+**Examples:**
+* score
+* _kills
+* targetPlayer
+* _crosshairColor
 
-* `Score`
-* `Kills`
-* `TargetPlayer`
-* `Range`
-* `CrosshairColor`
-* `AbilityID`
-
-<a name="3.2.1.3"></a>
-<a name="bp-var-bool-prefix"></a>
-##### 3.2.1.3 Boolean `b` Prefix 
+#### 3.1.3 Private Instance Variable `` '_' `` Prefix
 
 All booleans should be named in PascalCase but prefixed with a lowercase `b`.
 
-Example: Use `bDead` and `bEvil`, **not** `Dead` and `Evil`.
+Example: Use `_dead` and `_points`, **not** `dead` and `points`.
 
-UE4 Blueprint editors know not to include the `b` in user-friendly displays of the variable.
+Unity Inspector knows not to include the `` '_' `` in user-friendly displays of the variable.
 
-<a name="3.2.1.4"></a>
-<a name="bp-var-bool-names"></a>
-##### 3.2.1.4 Boolean Names 
-
-<a name="3.2.1.4.1"></a>
-###### 3.2.1.4.1 General And Independent State Information 
+#### 3.1.4 General And Independent State Information
 
 All booleans should be named as descriptive adjectives when possible if representing general information. Do not include words that phrase the variable as a question, such as `Is`. This is reserved for functions.
 
-Example: Use `bDead` and `bHostile` **not** `bIsDead` and `bIsHostile`.
+Example: Use `_dead` and `_hostile` **not** `_isDead` and `_isHostile`.
 
-Try to not use verbs such as `bRunning`. Verbs tend to lead to complex states.
+Try to not use verbs such as `_running`. Verbs tend to lead to complex states.
 
-<a name="3.2.1.4.2"></a>
-###### 3.2.1.4.2 Complex States 
+#### 3.1.5 Complex States 
 
 Do not to use booleans to represent complex and/or dependent states. This makes state adding and removing complex and no longer easily readable. Use an enumeration instead.
 
-Example: When defining a weapon, do **not** use `bReloading` and `bEquipping` if a weapon can't be both reloading and equipping. Define an enumeration named `EWeaponState` and use a variable with this type named `WeaponState` instead. This makes it far easier to add new states to weapons.
+Example: When defining a weapon, do **not** use `_reloading` and `_Equipping` if a weapon can't be both reloading and equipping. Define an enumeration named `EWeaponState` and use a variable with this type named `WeaponState` instead. This makes it far easier to add new states to weapons.
 
-Example: Do **not** use `bRunning` if you also need `bWalking` or `bSprinting`. This should be defined as an enumeration with clearly defined state names.
+Example: Do **not** use `_running` if you also need `_walking` or `_sprinting`. This should be defined as an enumeration with clearly defined state names.
 
-<a name="3.2.1.5"></a>
-<a name="bp-vars-naming-context"></a>
-##### 3.2.1.5 Considered Context 
+#### 3.1.6 Redudency with Considered Context 
 
 All variable names must not be redundant with their context as all variable references in Blueprint will always have context.
 
-<a name="3.2.1.5e"></a>
-###### 3.2.1.5e Examples:
+**Example:**
 
 Consider a Blueprint called `BP_PlayerCharacter`.
 
-**Bad**
-
-* `PlayerScore`
-* `PlayerKills`
-* `MyTargetPlayer`
-* `MyCharacterName`
-* `CharacterSkills`
-* `ChosenCharacterSkin`
+>**Bad**
+>
+>* `PlayerScore`
+>* `PlayerKills`
+>* `MyTargetPlayer`
+>* `MyCharacterName`
+>* `CharacterSkills`
+>* `ChosenCharacterSkin`
 
 All of these variables are named redundantly. It is implied that the variable is representative of the `BP_PlayerCharacter` it belongs to because it is `BP_PlayerCharacter` that is defining these variables.
 
-**Good**
+>**Good**
+>
+>* `Score`
+>* `Kills`
+>* `TargetPlayer`
+>* `Name`
+>* `Skills`
+>* `Skin`
 
-* `Score`
-* `Kills`
-* `TargetPlayer`
-* `Name`
-* `Skills`
-* `Skin`
-
-<a name="3.2.1.6"></a>
-<a name="bp-vars-naming-atomic"></a>
-##### 3.2.1.6 Do _Not_ Include Atomic Type Names 
+#### 3.1.7 Do _Not_ Include Atomic Type Names 
 
 Atomic or primitive variables are variables that represent data in their simplest form, such as booleans, integers, floats, and enumerations.
 
-Strings and vectors are considered atomic in terms of style when working with Blueprints, however they are technically not atomic.
-
-> While vectors consist of three floats, vectors are often able to be manipulated as a whole, same with rotators.
-
-> Do _not_ consider Text variables as atomic, they are secretly hiding localization functionality. The atomic type of a string of characters is `String`, not `Text`.
+Strings and Lists are considered atomic in terms of style when working with C# scripts, however they are technically not atomic.
 
 Atomic variables should not have their type name in their name.
 
-Example: Use `Score`, `Kills`, and `Description` **not** `ScoreFloat`, `FloatKills`, `DescriptionString`.
+Example: Use `_score`, `_kills`, and `description` **not** `_scoreFloat`, `_floatKills`, `descriptionString`.
 
 The only exception to this rule is when a variable represents 'a number of' something to be counted _and_ when using a name without a variable type is not easy to read.
 
-Example: A fence generator needs to generate X number of posts. Store X in `NumPosts` or `PostsCount` instead of `Posts` as `Posts` may potentially read as an Array of a variable type named `Post`.
+Example: A fence generator needs to generate X number of posts. Store X in `numPosts` or `postsCount` instead of `posts` as `posts` may potentially read as an Array of a variable type named `Post`.
 
-<a name="3.2.1.7"></a>
-<a name="bp-vars-naming-complex"></a>
-##### 3.2.1.7 Do Include Non-Atomic Type Names 
+#### 3.1.8 Do Include Non-Atomic Type Names 
 
-Non-atomic or complex variables are variables that represent data as a collection of atomic variables. Structs, Classes, Interfaces, and primitives with hidden behavior such as `Text` and `Name` all qualify under this rule.
+Non-atomic or complex variables are variables that represent data as a collection of atomic variables. Structs, Classes, Interfaces, and primitives with hidden behavior such as `Text` and `Rigidbody` all qualify under this rule.
 
 > While an Array of an atomic variable type is a list of variables, Arrays do not change the 'atomicness' of a variable type.
 
 These variables should include their type name while still considering their context.
 
-If a class owns an instance of a complex variable, i.e. if a `BP_PlayerCharacter` owns a `BP_Hat`, it should be stored as the variable type as without any name modifications.
+If a class owns an instance of a complex variable, i.e. if a `S_PlayerCharacter` owns a `S_Gun`, it should be stored as the variable type as without any name modifications.
 
-Example: Use `Hat`, `Flag`, and `Ability` **not** `MyHat`, `MyFlag`, and `PlayerAbility`.
+Example: Use `hat`, `_flag`, and `ability` **not** `myHat`, `_myFlag`, and `playerAbility`.
 
 If a class does not own the value a complex variable represents, you should use a noun along with the variable type.
 
-Example: If a `BP_Turret` has the ability to target a `BP_PlayerCharacter`, it should store its target as `TargetPlayer` as when in the context of `BP_Turret` it should be clear that it is a reference to another complex variable type that it does not own.
+Example: If a `S_Turret` has the ability to target a `S_PlayerCharacter`, it should store its target as `TargetPlayerCharacter` as when in the context of `S_Turret` it should be clear that it is a reference to another complex variable type that it does not own.
 
-
-<a name="3.2.1.8"></a>
-<a name="bp-vars-naming-arrays"></a>
-##### 3.2.1.8 Arrays 
+#### 3.1.9 Arrays / Lists
 
 Arrays follow the same naming rules as above, but should be named as a plural noun.
 
-Example: Use `Targets`, `Hats`, and `EnemyPlayers`, **not** `TargetList`, `HatArray`, `EnemyPlayerArray`.
+Example: Use `_targets`, `hats`, and `enemyPlayers`, **not** `_targetList`, `hatArray`, `enemyPlayerArray`.
 
+#### 3.1.10 Inspector Editable Variables 
 
-<a name="3.2.2"></a>
-<a name="bp-vars-editable"></a>
-#### 3.2.2 Editable Variables 
+All variables that are safe to change the value of in order to configure behavior of a prefab should be marked `[SerializeField]` or be public variables.
 
-All variables that are safe to change the value of in order to configure behavior of a blueprint should be marked as `Editable`.
+Conversely, all variables that are not safe to change or should not be exposed to designers should _not_ be marked as public or [SerializeField].
 
-Conversely, all variables that are not safe to change or should not be exposed to designers should _not_ be marked as editable, unless for engineering reasons the variable must be marked as `Expose On Spawn`.
+Do not arbitrarily mark variables as `[SerializeField]`.
 
-Do not arbitrarily mark variables as `Editable`.
+Variables that need to be serialized but should not be editable in the inspector should be marked '[HideInInspector]'.
 
-<a name="3.2.2.1"></a>
-<a name="bp-vars-editable-tooltips"></a>
-##### 3.2.2.1 Tooltips 
+#### 3.1.11 Tooltips 
 
-All `Editable` variables, including those marked editable just so they can be marked as `Expose On Spawn`, should have a description in their `Tooltip` fields that explains how changing this value affects the behavior of the blueprint.
+All variables visible in the inspector should have a description in a `[Tooltip("Description goes here")]` attribute that explains how changing this value affects the behavior of the script.
 
-<a name="3.2.2.2"></a>
-<a name="bp-vars-editable-ranges"></a>
-##### 3.2.2.2 Slider And Value Ranges 
+#### 3.1.12 Slider And Value Ranges 
 
-All `Editable` variables should make use of slider and value ranges if there is ever a value that a variable should _not_ be set to.
+All variables visible in the inspector should make use of slider and/or value ranges if there is ever a value that a variable should _not_ be set to.
 
-Example: A blueprint that generates fence posts might have an editable variable named `PostsCount` and a value of -1 would not make any sense. Use the range fields to mark 0 as a minimum.
+Example: A script that generates fence posts might have an editable variable named `postsCount` and a value of -1 would not make any sense. Use the following code to enforce 0 as a minimum: 
 
-If an editable variable is used in a Construction Script, it should have a reasonable Slider Range defined so that someone can not accidentally assign it a large value that could crash the editor.
+'''void OnValidate() {
+     postsCount = Mathf.Max(postsCount, 0);
+}'''
 
-A Value Range only needs to be defined if the bounds of a value are known. While a Slider Range prevents accidental large number inputs, an undefined Value Range allows a user to specify a value outside the Slider Range that may be considered 'dangerous' but still valid.
+A slide can also be used. Use the '[Range(min, max)]' attribute to create a slider with the given min and max.
 
 <a name="3.2.3"></a>
 <a name="bp-vars-categories"></a>
-#### 3.2.3 Categories 
+#### 3.1.13 Headers 
 
-If a class has only a small number of variables, categories are not required.
+If a class has only a small number of variables, headers are not required.
 
-If a class has a moderate amount of variables (5-10), all `Editable` variables should have a non-default category assigned. A common category is `Config`.
+If a class has a moderate/large amount of inspector visible variables (5-10), all variables visibile in the inspector should be grouped under [Header("HeaderNameHere")] attributes, each header describing the group of variables under it. The [Space] and [Space(height)] attributes can also be used for improved readability.
 
-If a class has a large amount of variables, all `Editable` variables should be categorized into sub-categories using the category `Config` as the base category. Non-editable variables should be categorized into descriptive categories describing their usage. 
+#### 3.1.14 Variable Access Level 
 
-> You can define sub-categories by using the pipe character `|`, i.e. `Config | Animations`.
+In C#, variables have a concept of access level. Public means any code outside the class can access the variable. Protected means only the class and any child classes can access this variable internally. Private means only this class and no child classes can access this variable.
 
-Example: A weapon class set of variables might be organized as:
+Unless it is known that a variable should only be accessed within the class it is defined and never a child class, do not mark variables as private. Variables should be marked `protected`, reserve private for when you absolutely know you want to restrict child class usage.
 
-	|-- Config
-	|	|-- Animations
-	|	|-- Effects
-	|	|-- Audio
-	|	|-- Recoil
-	|	|-- Timings
-	|-- Animations
-	|-- State
-	|-- Visuals
+<a name="scripting-funcs"></a>
+### 3.2 Functions, Events, and Event Dispatchers 
 
-<a name="3.2.4"></a>
-<a name="bp-vars-access"></a>
-#### 3.2.4 Variable Access Level 
+This section describes how you should author functions, events, and event dispatchers. Everything that applies to functions also applies to events, unless otherwise noted 
 
-In C++, variables have a concept of access level. Public means any code outside the class can access the variable. Protected means only the class and any child classes can access this variable internally. Private means only this class and no child classes can access this variable.
+The naming of functions and events is critically important. Based on the name alone, certain assumptions can be made about functions.
 
-Blueprints do not have a defined concept of protected access currently.
+#### 3.2.1 All Functions Should Be Verbs 
 
-Treat `Editable` variables as public variables. Treat non-editable variables as protected variables.
+All functions, event dispatchers and event handlers perform some form of action, whether its getting info, calculating data, or causing something to explode. 
 
-<a name="3.2.4.1"></a>
-<a name="bp-vars-access-private"></a>
-##### 3.2.4.1 Private Variables 
+Therefore, all functions should all start with verbs. They should be worded in the present tense whenever possible. They should also have some context as to what they are doing.
 
-Unless it is known that a variable should only be accessed within the class it is defined and never a child class, do not mark variables as private. Until variables are able to be marked `protected`, reserve private for when you absolutely know you want to restrict child class usage.
+Event handlers and event dispatchers are an exception to this rule.
 
-<a name="3.2.5"></a>
-<a name="bp-vars-advanced"></a>
-#### 3.2.5 Advanced Display 
+>Good examples:
+>
+>* `Fire` - Good example if in a Character / Weapon class, as it has context. Bad if in a Barrel / Grass / any ambiguous class.
+>* `Jump` - Good example if in a Character class, otherwise, needs context.
+>* `Explode`
+>* `ReceiveMessage`
+>* `SortPlayerArray`
+>* `GetArmOffset`
+>* `GetCoordinates`
+>* `UpdateTransforms`
+>* `EnableBigHeadMode`
+>* `IsEnemy` - ["Is" is a verb.](http://writingexplained.org/is-is-a-verb)
 
-If a variable should be editable but often untouched, mark it as `Advanced Display`. This makes the variable hidden unless the advanced display arrow is clicked.
+>Bad examples:
+>
+>* `Dead` - Is Dead? Will deaden?
+>* `Rock`
+>* `ProcessData` - Ambiguous, these words mean nothing.
+>* `PlayerState` - Nouns are ambiguous.
+>* `Color` - Verb with no context, or ambiguous noun.
 
-To find the `Advanced Display` option, it is listed as an advanced displayed variable in the variable details list.
-
-<a name="3.2.6"></a>
-<a name="bp-vars-transient"></a>
-#### 3.2.6 Transient Variables 
-
-Transient variables are variables that do not need to have their value saved and loaded and have an initial value of zero or null. This is useful for references to other objects and actors who's value isn't known until run-time. This prevents the editor from ever saving a reference to it, and speeds up saving and loading of the blueprint class.
-
-Because of this, all transient variables should always be initialized as zero or null. To do otherwise would result in hard to debug errors.
-
-<a name="3.2.7"></a>
-<a name="bp-vars-config"></a>
-#### 3.2.8 Config Variables 
-
-Do not use the `Config Variable` flag. This makes it harder for designers to control blueprint behavior. Config variables should only be used in C++ for rarely changed variables. Think of them as `Advanced Advanced Display` variables.
-
-<a name="3.3"></a>
-<a name="bp-functions"></a>
-### 3.3 Functions, Events, and Event Dispatchers 
-
-This section describes how you should author functions, events, and event dispatchers. Everything that applies to functions also applies to events, unless otherwise noted.
-
-<a name="3.3.1"></a>
-<a name="bp-funcs-naming"></a>
-#### 3.3.1 Function Naming 
-
-The naming of functions, events, and event dispatchers is critically important. Based on the name alone, certain assumptions can be made about functions. For example:
-
-* Is it a pure function?
-* Is it fetching state information?
-* Is it a handler?
-* Is it an RPC?
-* What is its purpose?
-
-These questions and more can all be answered when functions are named appropriately.
-
-<a name="3.3.1.1"></a>
-<a name="bp-funcs-naming-verbs"></a>
-#### 3.3.1.1 All Functions Should Be Verbs 
-
-All functions and events perform some form of action, whether its getting info, calculating data, or causing something to explode. Therefore, all functions should all start with verbs. They should be worded in the present tense whenever possible. They should also have some context as to what they are doing.
-
-`OnRep` functions, event handlers, and event dispatchers are an exception to this rule.
-
-Good examples:
-
-* `Fire` - Good example if in a Character / Weapon class, as it has context. Bad if in a Barrel / Grass / any ambiguous class.
-* `Jump` - Good example if in a Character class, otherwise, needs context.
-* `Explode`
-* `ReceiveMessage`
-* `SortPlayerArray`
-* `GetArmOffset`
-* `GetCoordinates`
-* `UpdateTransforms`
-* `EnableBigHeadMode`
-* `IsEnemy` - ["Is" is a verb.](http://writingexplained.org/is-is-a-verb)
-
-Bad examples:
-
-* `Dead` - Is Dead? Will deaden?
-* `Rock`
-* `ProcessData` - Ambiguous, these words mean nothing.
-* `PlayerState` - Nouns are ambiguous.
-* `Color` - Verb with no context, or ambiguous noun.
-
-<a name="3.3.1.2"></a>
-<a name="bp-funcs-naming-onrep"></a>
-#### 3.3.1.2 Property RepNotify Functions Always `OnRep_Variable`
-
-All functions for replicated with notification variables should have the form `OnRep_Variable`. This is forced by the Blueprint editor. If you are writing a C++ `OnRep` function however, it should also follow this convention when exposing it to Blueprints.
-
-<a name="3.3.1.3"></a>
-<a name="bp-funcs-naming-bool"></a>
-#### 3.3.1.3 Info Functions Returning Bool Should Ask Questions 
+#### 3.2.2 Info Functions Returning Bool Should Ask Questions 
 
 When writing a function that does not change the state of or modify any object and is purely for getting information, state, or computing a yes/no value, it should ask a question. This should also follow [the verb rule](#bp-funcs-naming-verbs).
 
 This is extremely important as if a question is not asked, it may be assumed that the function performs an action and is returning whether that action succeeded.
 
-Good examples:
+>Good examples:
+>
+>* `IsDead`
+>* `IsOnFire`
+>* `IsAlive`
+>* `IsSpeaking`
+>* `IsHavingAnExistentialCrisis`
+>* `IsVisible`
+>* `HasWeapon` - ["Has" is a verb.](http://grammar.yourdictionary.com/parts-of-speech/verbs/Helping-Verbs.html)
+>* `WasCharging` - ["Was" is past-tense of "be".](http://grammar.yourdictionary.com/parts-of-speech/verbs/Helping-Verbs.html) Use "was" when referring to 'previous frame' or 'previous state'.
+>* `CanReload` - ["Can" is a verb.](http://grammar.yourdictionary.com/parts-of-speech/verbs/Helping-Verbs.html)
 
-* `IsDead`
-* `IsOnFire`
-* `IsAlive`
-* `IsSpeaking`
-* `IsHavingAnExistentialCrisis`
-* `IsVisible`
-* `HasWeapon` - ["Has" is a verb.](http://grammar.yourdictionary.com/parts-of-speech/verbs/Helping-Verbs.html)
-* `WasCharging` - ["Was" is past-tense of "be".](http://grammar.yourdictionary.com/parts-of-speech/verbs/Helping-Verbs.html) Use "was" when referring to 'previous frame' or 'previous state'.
-* `CanReload` - ["Can" is a verb.](http://grammar.yourdictionary.com/parts-of-speech/verbs/Helping-Verbs.html)
+>Bad examples:
+>
+>* `Fire` - Is on fire? Will fire? Do fire?
+>* `OnFire` - Can be confused with event dispatcher for firing.
+>* `Dead` - Is dead? Will deaden?
+>* `Visibility` - Is visible? Set visibility? A description of flying conditions?
 
-Bad examples:
-
-* `Fire` - Is on fire? Will fire? Do fire?
-* `OnFire` - Can be confused with event dispatcher for firing.
-* `Dead` - Is dead? Will deaden?
-* `Visibility` - Is visible? Set visibility? A description of flying conditions?
-
-<a name="3.3.1.4"></a>
-<a name="bp-funcs-naming-eventhandlers"></a>
-#### 3.3.1.4 Event Handlers and Dispatchers Should Start With `On` 
+#### 3.2.3 Event Handlers and Dispatchers Should Start With `On` 
 
 Any function that handles an event or dispatches an event should with `On` and continue to follow [the verb rule](#bp-funcs-naming-verbs). The verb may move to the end however if past-tense reads better.
 
 [Collocations](http://dictionary.cambridge.org/us/grammar/british-grammar/about-words-clauses-and-sentences/collocation) of the word `On` are exempt from following the verb rule.
 
-`Handle` is not allowed. It is 'Unreal' to use `On` instead of `Handle`, while other frameworks may prefer to use `Handle` instead of `On`.
+`Handle` is not allowed. For the sake of consistency, On has been chosen to as it is shorter and matches the [Unreal Style Guide](http://ue4.style) this style guide is based off of. Other frameworks may prefer to use `Handle` instead of `On`.
 
-Good examples:
+>Good examples:
+>
+>* `OnDeath` - Common collocation in games
+>* `OnPickup`
+>* `OnReceiveMessage`
+>* `OnMessageRecieved`
+>* `OnTargetChanged`
+>* `OnClick`
+>* `OnLeave`
 
-* `OnDeath` - Common collocation in games
-* `OnPickup`
-* `OnReceiveMessage`
-* `OnMessageRecieved`
-* `OnTargetChanged`
-* `OnClick`
-* `OnLeave`
+>Bad examples:
+>
+>* `OnData`
+>* `OnTarget`
+>* `HandleMessage`
+>* `HandleDeath`
 
-Bad examples:
-
-* `OnData`
-* `OnTarget`
-* `HandleMessage`
-* `HandleDeath`
-
-<a name="3.3.1.5"></a>
-<a name="bp-funcs-naming-rpcs"></a>
-#### 3.3.1.5 Remote Procedure Calls Should Be Prefixed With Target 
-
-Any time an RPC is created, it should be prefixed with either `Server`, `Client`, or `Multicast`. No exceptions.
-
-After the prefix, follow all other rules regarding function naming.
-
-Good examples:
-
-* `ServerFireWeapon`
-* `ClientNotifyDeath`
-* `MulticastSpawnTracerEffect`
-
-Bad examples:
-
-* `FireWeapon` - Does not indicate its an RPC of some kind.
-* `ServerClientBroadcast` - Confusing.
-* `AllNotifyDeath` - Use `Multicast`, never `All`.
-* `ClientWeapon` - No verb, ambiguous.
-
-#### 3.3.4 All Public Functions Should Have A Description
-
-This rule applies more to public facing or marketplace blueprints, so that others can more easily navigate and consume your blueprint API.
-
-Simply, any function that has an access specificer of Public should have its description filled out. 
 
 <a name="4"></a>
-<a name="Static Meshes"></a>
-<a name="s"></a>
-## 4. Static Meshes
+<a name="prefabs"></a>
+## 4. Prefabs
+
+This section will focus on Prefab classes and their internals.
+
+
+<a name="5"></a>
+<a name="scenes"></a>
+## 5. Scenes / Levels
+
+This section will focus on Scene assets and their internals.
+
+### 5.1 No Errors Or Warnings
+
+All levels should load with zero errors or warnings. If a level loads with any errors or warnings, they should be fixed immediately to prevent cascading issues.
+
+### 5.2 No Player Visible Z Fighting
+
+Levels should not have any [z-fighting](https://en.wikipedia.org/wiki/Z-fighting) in all areas visible to the player. 
+
+
+## 5. Meshes / .obj / .fbx
 
 This section will focus on Static Mesh assets and their internals.
 
 ### Sections
 
-> 4.1 [UVs](#s-uvs)
+> 5.1 [UVs](#s-uvs)
 
-> 4.2 [LODs](#s-lods)
+> 5.2 [LODs](#s-lods)
 
-> 4.3 [Modular Socketless Snapping](#s-modular-snapping)
+> 5.3 [Modular Socketless Snapping](#s-modular-snapping)
 
-> 4.4 [Must Have Collision](#s-collision)
+> 5.4 [Must Have Collision](#s-collision)
 
-> 4.5 [Correct Scale](#s-scaled)
+> 5.5 [Correct Scale](#s-scaled)
 
-<a name="4.1"></a>
-<a name="s-uvs"></a>
-### 4.1 Static Mesh UVs
-
-If Linter is reporting bad UVs and you can't seem to track it down, open the resulting `.log` file in your project's `Saved/Logs` folder for exact details as to why its failing. I am hoping to include these messages in the Lint report in the future.
-
-<a name="4.1.1"></a>
+<a name="5.1.1"></a>
 <a name="s-uvs-no-missing"></a>
-#### 4.1.1 All Meshes Must Have UVs
+#### 5.1.1 All Meshes Must Have UVs
 
 Pretty simple. All meshes, regardless how they are to be used, should not be missing UVs.
 
-<a name="4.1.2"></a>
+<a name="5.1.2"></a>
 <a name="s-uvs-no-overlapping"></a>
-#### 4.1.2 All Meshes Must Not Have Overlapping UVs for Lightmaps
+#### 5.1.2 All Meshes Must Not Have Overlapping UVs for Lightmaps
 
 Pretty simple. All meshes, regardless how they are to be used, should have valid non-overlapping UVs.
 
-<a name="4.2"></a>
+<a name="5.2"></a>
 <a name="s-lods"></a>
-### 4.2 LODs Should Be Set Up Correctly
+### 5.2 LODs Should Be Set Up Correctly
 
 This is a subjective check on a per-project basis, but as a general rule any mesh that can be seen at varying distances should have proper LODs.
 
-<a name="4.3"></a>
+<a name="5.3"></a>
 <a name="s-modular-snapping"></a>
-### 4.3 Modular Socketless Assets Should Snap To The Grid Cleanly
+### 5.3 Modular Socketless Assets Should Snap To The Grid Cleanly
 
 This is a subjective check on a per-asset basis, however any modular socketless assets should snap together cleanly based on the project's grid settings.
 
 It is up to the project whether to snap based on a power of 2 grid or on a base 10 grid. However if you are authoring modular socketless assets for the marketplace, Epic's requirement is that they snap cleanly when the grid is set to 10 units or bigger.
 
-<a name="4.4"></a>
+<a name="5.4"></a>
 <a name="s-collision"></a>
-### 4.4 All Meshes Must Have Collision
+### 5.4 All Meshes Must Have Collision
 
 Regardless of whether an asset is going to be used for collision in a level, all meshes should have proper collision defined. This helps the engine with things such as bounds calculations, occlusion, and lighting. Collision should also be well-formed to the asset.
 
-<a name="4.5"></a>
+<a name="5.5"></a>
 <a name="s-scaled"></a>
-### 4.5 All Meshes Should Be Scaled Correctly
+### 5.5 All Meshes Should Be Scaled Correctly
 
 This is a subjective check on a per-project basis, however all assets should be scaled correctly to their project. Level designers or blueprint authors should not have to tweak the scale of meshes to get them to confirm in the editor. Scaling meshes in the engine should be treated as a scale override, not a scale correction.
 
-<a name="5"></a>
-<a name="Particle Systems"></a>
-<a name="ps"></a>
-## 5. Particle Systems
 
-This section will focus on Particle System assets and their internals.
-
-### Sections
-
-> 5.1 [Emitter Naming](#ps-naming)
-
-<a name="5.1"></a>
-<a name="ps-emitter-naming"></a>
-### 5.1 Emitter Naming
-
-All emitters in a Particle System should be named something descriptive and not left to their default name "Particle Emitter".
-
-<a name="6"></a>
-<a name="Levels"></a>
-<a name="levels"></a>
-## 6. Levels / Maps 
-
-[See Terminology Note](#terms-level-map) regarding "levels" vs "maps".
-
-This section will focus on Level assets and their internals.
-
-### Sections
-
-> 6.1 [No Errors Or Warnings](#levels-no-errors-or-warnings)
-
-> 6.2 [Lighting Should Be Built](#levels-lighting-should-be-built)
-
-> 6.3 [No Player Visible Z Fighting](#evels-no-visible-z-fighting)
-
-> 6.4 [Marketplace Specific Rules](#evels-levels-mp-rules)
-
-<a name="6.1"></a>
-<a name="levels-no-errors-or-warnings"></a>
-### 6.1 No Errors Or Warnings
-
-All levels should load with zero errors or warnings. If a level loads with any errors or warnings, they should be fixed immediately to prevent cascading issues.
-
-You can run a map check on an open level in the editor by using the console command "map check".
-
-Please note: Linter is even more strict on this than the editor is currently, and will catch load errors that the editor will resolve on its own.
-
-<a name="6.2"></a>
-<a name="levels-lighting-should-be-built"></a>
-### 6.2 Lighting Should Be Built
-
-It is normal during development for levels to occasionaly not have lighting built. When doing a test/internal/shipping build or any build that is to be distributed however, lighting should always be built.
-
-<a name="6.3"></a>
-<a name="levels-no-visible-z-fighting"></a>
-### 6.3 No Player Visible Z Fighting
-
-Levels should not have any [z-fighting](https://en.wikipedia.org/wiki/Z-fighting) in all areas visible to the player. 
-
-<a name="6.4"></a>
-<a name="levels-mp-rules"></a>
-### 6.4 Marketplace Specific Rules
-
-If a project is to be sold on the UE4 Marketplace, it must follow these rules.
-
-<a name="6.4.1"></a>
-<a name="levels-mp-rules-overview"></a>
-### 6.4.1 Overview Level
-
-If your project contains assets that should be visualized or demoed, you must have a map within your project that contains the name "Overview".
-
-This overview map, if it is visualizing assets, should be set up according to [Epic's guidelines](http://help.epicgames.com/customer/en/portal/articles/2592186-marketplace-submission-guidelines-preparing-your-assets#Required%20Levels%20and%20Maps).
-
-For example, `InteractionComponent_Overview`.
-
-<a name="6.4.2"></a>
-<a name="levels-mp-rules-demo"></a>
-### 6.4.2 Demo Level
-
-If your project contains assets that should be demoed or come with some sort of tutorial, you must have a map within your project that contains the name "Demo". This level should also contain documentation within it in some form that illustrates how to use your project. See Epic's Content Examples project for good examples on how to do this.
-
-If your project is a gameplay mechanic or other form of system as opposed to an art pack, this can be the same as your "Overview" map.
-
-For example, `InteractionComponent_Overview_Demo`, `ExplosionKit_Demo`.
-
-<a name="7"></a>
-<a name="textures"></a>
 ## 7. Textures 
 
 This section will focus on Texture assets and their internals.
