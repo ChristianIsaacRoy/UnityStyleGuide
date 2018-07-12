@@ -215,7 +215,7 @@ There are multiple ways to lay out the content of a UE4 project. In this style, 
 <pre>
 |-- Assets
     |-- <a href="#structure-top-level">GenericShooter</a>
-        |-- Art
+        |-- Environment
         |   |-- Industrial
         |   |   |-- Ambient
         |   |   |-- Machinery
