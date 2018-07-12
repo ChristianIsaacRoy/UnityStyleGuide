@@ -45,7 +45,7 @@ If you have made a notable fork or translation that is not suitable for a pull r
 **Variables / Properties** - The words 'variable' and 'property' in most contexts are interchangable. If they are both used together in the same context however:
 
 >**Property** -
-> C# Properties enable a class to expose a public way of getting and setting values, while hiding implementation or verification code. For more about C# properties see [https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/properties](MSDN).
+> C# Properties enable a class to expose a public way of getting and setting values, while hiding implementation or verification code. For more about C# properties see [MSDN](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/properties).
 >
 > When in the context of a class, often used to imply accessing previously defined data.
 >
