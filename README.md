@@ -2,7 +2,7 @@
 
 _An attempt to make Unity projects more consistent._
 
-Heavily inspired by the [Unreal Style Guide](http://ue4.style) by Michael Allar.
+Heavily inspired by the [Unreal Style Guide](http://ue4.style) by Michael Allar. 
 
 ## Discuss This Style Guide
 
@@ -740,6 +740,11 @@ Levels should not have any [z-fighting](https://en.wikipedia.org/wiki/Z-fighting
 ### 5.3 Use Empty Game Objects as Folders
 
 Organize game objects into folders using empty game objects. Try to maintain a balanced hierarchy, having a hierachy that is too shallow/deep will effect performance.
+
+<a name="5.4"></a>
+### 5.4 Every Scene is Runnable
+
+A scene should work by playing it from the editor without having to get there through another scene.
 
 <a name="6"></a>
 ## 6. Meshes / .obj / .fbx
