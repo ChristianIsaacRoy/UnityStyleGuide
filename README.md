@@ -713,6 +713,12 @@ Any function that handles an event or dispatches an event should with `On` and c
 
 This section will focus on Prefab classes and their internals.
 
+<a name="5.1"></a>
+### 4.1 _Everything_ should be a prefab
+
+Everything in the game should have a prefab, even objects that are only used once in a specific scene. This makes scenes and game objects more distinct and you don't need to edit the scene in order to edit the object.
+
+> The only exception to this rule is for scene organization game objects that are used as folders.
 
 <a name="5"></a>
 <a name="scenes"></a>
@@ -729,6 +735,11 @@ All levels should load with zero errors or warnings. If a level loads with any e
 ### 5.2 No Player Visible Z Fighting
 
 Levels should not have any [z-fighting](https://en.wikipedia.org/wiki/Z-fighting) in all areas visible to the player. 
+
+<a name="5.3"></a>
+### 5.3 Use Empty Game Objects as Folders
+
+Organize game objects into folders using empty game objects. Try to maintain a balanced hierarchy, having a hierachy that is too shallow/deep will effect performance.
 
 <a name="6"></a>
 ## 6. Meshes / .obj / .fbx
