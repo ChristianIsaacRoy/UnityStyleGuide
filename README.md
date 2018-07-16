@@ -206,9 +206,9 @@ When naming an asset use these tables to determine the prefix and suffix to use 
 
 Equally important as asset names, the directory structure style of a project should be considered law. Asset naming conventions and content directory structure go hand in hand, and a violation of either causes unneeded chaos.
 
-There are multiple ways to lay out the content of a UE4 project. In this style, we will be using a structure that relies more on filtering and search abilities of the Project Window for those working with assets to find assets of a specific type instead of another common structure that groups asset types with folders.
+There are multiple ways to lay out the content of a Unity project. In this style, we will be using a structure that relies more on filtering and search abilities of the Project Window for those working with assets to find assets of a specific type instead of another common structure that groups asset types with folders.
 
-> If you are using the prefix [naming convention](#asset-name-modifiers) above, using folders to contain assets of similar types such as `Meshes`, `Textures`, and `Materials` is a redundant practice as asset types are already both sorted by prefix as well as able to be filtered in the content browser.
+> If you are using the prefix [naming convention](#asset-name-modifiers) above, using folders to contain assets of similar types such as `Meshes`, `Textures`, and `Materials` is a redundant practice as asset types are already both sorted by prefix as well as able to be filtered in the Project Window.
 
 <a name="2e1"><a>
 ### 2e1 Example Project Content Structure
@@ -430,18 +430,7 @@ Any testing or debug materials should be within `MaterialLibrary/Debug`. This al
 <a name="structure-no-empty-folders"></a>
 ### 2.9 No Empty Folders 
 
-There simply shouldn't be any empty folders. They clutter the content browser.
-
-If you find that the content browser has an empty folder you can't delete, you should perform the following:
-1. Be sure you're using source control.
-1. Immediately run Fix Up Redirectors on your project.
-1. Navigate to the folder on-disk and delete the assets inside.
-1. Close the editor.
-1. Make sure your source control state is in sync (i.e. if using Perforce, run a Reconcile Offline Work on your content directory)
-1. Open the editor. Confirm everything still works as expected. If it doesn't, revert, figure out what went wrong, and try again.
-1. Ensure the folder is now gone.
-1. Submit changes to source control.
-
+There simply shouldn't be any empty folders. They clutter the Project Window.
 
 <a name="3"></a>
 <a name="scripting"></a>
@@ -780,20 +769,6 @@ Pretty simple. All meshes, regardless how they are to be used, should have valid
 ### 5.2 LODs Should Be Set Up Correctly
 
 This is a subjective check on a per-project basis, but as a general rule any mesh that can be seen at varying distances should have proper LODs.
-
-<a name="5.3"></a>
-<a name="s-modular-snapping"></a>
-### 5.3 Modular Socketless Assets Should Snap To The Grid Cleanly
-
-This is a subjective check on a per-asset basis, however any modular socketless assets should snap together cleanly based on the project's grid settings.
-
-It is up to the project whether to snap based on a power of 2 grid or on a base 10 grid. However if you are authoring modular socketless assets for the marketplace, Epic's requirement is that they snap cleanly when the grid is set to 10 units or bigger.
-
-<a name="5.4"></a>
-<a name="s-collision"></a>
-### 5.4 All Meshes Must Have Collision
-
-Regardless of whether an asset is going to be used for collision in a level, all meshes should have proper collision defined. This helps the engine with things such as bounds calculations, occlusion, and lighting. Collision should also be well-formed to the asset.
 
 <a name="5.5"></a>
 <a name="s-scaled"></a>
