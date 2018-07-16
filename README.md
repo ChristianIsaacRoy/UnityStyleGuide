@@ -695,7 +695,6 @@ Any function that handles an event or dispatches an event should with `On` and c
 >* `HandleMessage`
 >* `HandleDeath`
 
-
 <a name="4"></a>
 <a name="prefabs"></a>
 ## 4. Prefabs
@@ -738,41 +737,15 @@ A scene should work by playing it from the editor without having to get there th
 <a name="6"></a>
 ## 6. Meshes / .obj / .fbx
 
-This section will focus on Static Mesh assets and their internals.
+This section will focus on Mesh assets and their internals.
 
 ### Sections
 
-> 5.1 [UVs](#s-uvs)
+> 6.1 [Correct Scale](#s-scaled)
 
-> 5.2 [LODs](#s-lods)
-
-> 5.3 [Modular Socketless Snapping](#s-modular-snapping)
-
-> 5.4 [Must Have Collision](#s-collision)
-
-> 5.5 [Correct Scale](#s-scaled)
-
-<a name="5.1.1"></a>
+<a name="6.1"></a>
 <a name="s-uvs-no-missing"></a>
-#### 5.1.1 All Meshes Must Have UVs
-
-Pretty simple. All meshes, regardless how they are to be used, should not be missing UVs.
-
-<a name="5.1.2"></a>
-<a name="s-uvs-no-overlapping"></a>
-#### 5.1.2 All Meshes Must Not Have Overlapping UVs for Lightmaps
-
-Pretty simple. All meshes, regardless how they are to be used, should have valid non-overlapping UVs.
-
-<a name="5.2"></a>
-<a name="s-lods"></a>
-### 5.2 LODs Should Be Set Up Correctly
-
-This is a subjective check on a per-project basis, but as a general rule any mesh that can be seen at varying distances should have proper LODs.
-
-<a name="5.5"></a>
-<a name="s-scaled"></a>
-### 5.5 All Meshes Should Be Scaled Correctly
+#### 6.1 All Meshes Should Be Scaled Correctly
 
 This is a subjective check on a per-project basis, however all assets should be scaled correctly to their project. Level designers or blueprint authors should not have to tweak the scale of meshes to get them to confirm in the editor. Scaling meshes in the engine should be treated as a scale override, not a scale correction.
 
@@ -780,16 +753,6 @@ This is a subjective check on a per-project basis, however all assets should be 
 ## 7. Textures 
 
 This section will focus on Texture assets and their internals.
-
-### Sections
-
-> 7.1 [Dimensions Are Powers of 2](#textures-dimension)
-
-> 7.2 [Texture Density Should Be Uniform](#textures-dimension)
-
-> 7.3 [Textures Should Be No Bigger than 8192](#textures-max-size)
-
-> 7.4 [Correct Texture Groups](#textures-textures-group)
 
 <a name="7.1"></a>
 <a name="textures-dimensions"></a>
@@ -812,12 +775,6 @@ For example, if a project's texture density is 8 pixel per 1 unit, a texture tha
 ### 7.3 Textures Should Be No Bigger than 8192 
 
 No texture should have a dimension that exceeds 8192 in size, unless you have a very explicit reason to do so. Often, using a texture this big is simply just a waste of resources.
-
-<a name="7.4"></a>
-<a name="textures-group"></a>
-### 7.4 Textures Should Be Grouped Correctly 
-
-Every texture has a Texture Group property used for LODing, and this should be set correctly based on its use. For example, all UI textures should belong in the UI texture group.
 
 
 ## Contributors
