@@ -40,9 +40,9 @@ If you have made a notable fork or translation that is not suitable for a pull r
 **Cases** - There are a few different ways you can name things. Here are some common casing types:
 
 <a name="terms-pascal-case"></a>
->**PascalCase** - Capitalize every word and remove all spaces, e.g. `DesertEagle`, `StyleGuide`, `ASeriesOfWords`.
+>**PascalCase / UpperCamelCase** - Capitalize every word and remove all spaces, e.g. `DesertEagle`, `StyleGuide`, `ASeriesOfWords`.
 >	
->**camelCase** - The first letter is always lowercase but every following word starts with uppercase, e.g. `desertEagle`, `styleGuide`, `aSeriesOfWords`.
+>**lowerCamelCase** - The first letter is always lowercase but every following word starts with uppercase, e.g. `desertEagle`, `styleGuide`, `aSeriesOfWords`.
 >
 >**Snake_case** - Words can arbitrarily start upper or lowercase but words are separated by an underscore, e.g. `desert_Eagle`, `Style_Guide`, `a_Series_of_Words`.
 
@@ -54,7 +54,7 @@ If you have made a notable fork or translation that is not suitable for a pull r
 > When in the context of a class, often used to imply accessing previously defined data.
 >
 >**Instance Variable** -
-> Usually refers to a variable defined in a class. For example, if a script `S_Barrel` had a variable `_exploded`, `_exploded` may be referred to as a property of `S_Barrel`. 
+> Usually refers to a variable defined in a class. For example, if a script `S_Barrel` had a variable `isExploded`, `isExploded` may be referred to as a property of `S_Barrel`. 
 > When in the context of a class, often used to imply accessing previously defined data.
 >
 >**Local Variable** -
@@ -316,7 +316,7 @@ Using other characters outside `a-z`, `A-Z`, and `0-9` such as `@`, `-`, `_`, `,
 <a name="structure-top-level"><a>
 ### 2.2 Use A Top Level Folder For Project Specific Assets
 
-All of a project's assets should exist in a folder named after the project. For example, if your project is named 'Generic Shooter', _all_ of it's content should exist in `Assets/_GenericShooter`.
+All of a project's assets should exist in a folder named after the project. For example, if your project is named 'Generic Shooter', _all_ of it's content should exist in `Assets/GenericShooter`.
 
 There are multiple reasons for this approach.
 
@@ -447,47 +447,60 @@ There simply shouldn't be any empty folders. They clutter the Project Window.
 ### 3.1 Variables
                         
 <a name="3.1.1"></a>
-#### 3.1.1 Nouns
+#### 3.1.2 Nouns
 
 All non-boolean variable names must be clear, unambiguous, and descriptive nouns.
 
-<a name="3.1.2></a>
-#### 3.1.2 camelCase
+<a name="3.1.2"></a>
+#### 3.1.2 lowerCamelCase
 
-All non-boolean variables should be in the form of [camelCase](#terms).
+All non-boolean variables should be in the form of [lowerCamelCase](#terms).
 
 **Examples:**
 * score
-* _kills
+* kills
 * targetPlayer
-* _crosshairColor
+* crosshairColor
 
 <a name="3.1.3"></a>
-#### 3.1.3 Private Instance Variable `` '_' `` Prefix
+#### 3.1.3 Prefixes
 
-All booleans should be named in PascalCase but prefixed with a lowercase `b`.
-
-Example: Use `_dead` and `_points`, **not** `dead` and `points`.
-
-Unity Inspector knows not to include the `` '_' `` in user-friendly displays of the variable.
+Prefixes are discouraged by C# coding standards and we will not be using them here either.
 
 <a name="3.1.4"></a>
 #### 3.1.4 General And Independent State Information
 
-All booleans should be named as descriptive adjectives when possible if representing general information. Do not include words that phrase the variable as a question, such as `Is`. This is reserved for functions.
+All booleans should be named as descriptive adjectives when possible if representing general information. These should be preceded by a verb.
 
-Example: Use `_dead` and `_hostile` **not** `_isDead` and `_isHostile`.
+>Good examples:
+>
+>* `isDead`
+>* `isOnFire`
+>* `isAlive`
+>* `isSpeaking`
+>* `isHavingAnExistentialCrisis`
+>* `isVisible`
+>* `hasWeapon` - ["Has" is a verb.](http://grammar.yourdictionary.com/parts-of-speech/verbs/Helping-Verbs.html)
+>* `wasCharging` - ["Was" is past-tense of "be".](http://grammar.yourdictionary.com/parts-of-speech/verbs/Helping-Verbs.html) Use "was" when referring to 'previous frame' or 'previous state'.
+>* `canReload` - ["Can" is a verb.](http://grammar.yourdictionary.com/parts-of-speech/verbs/Helping-Verbs.html)
 
-Try to not use verbs such as `_running`. Verbs tend to lead to complex states.
+>Bad examples:
+>
+>* `fire` - Is on fire? Will fire? Do fire?
+>* `onFire` - Can be confused with event dispatcher for firing.
+>* `dead` - Is dead? Will deaden?
+>* `visibility` - Is visible? Set visibility? A description of flying conditions?
+
+Try to not use verbs such as `running`. Verbs tend to lead to complex states.
 
 <a name="3.1.5"></a>
 #### 3.1.5 Complex States 
 
 Do not to use booleans to represent complex and/or dependent states. This makes state adding and removing complex and no longer easily readable. Use an enumeration instead.
 
-Example: When defining a weapon, do **not** use `_reloading` and `_Equipping` if a weapon can't be both reloading and equipping. Define an enumeration named `EWeaponState` and use a variable with this type named `WeaponState` instead. This makes it far easier to add new states to weapons.
+Example: When defining a weapon, do **not** use `reloading` and `equipping` if a weapon can't be both reloading and equipping. Define an enumeration named `WeaponState` and use a variable with this type named `weaponState` instead. This makes it far easier to add new states to weapons.
 
-Example: Do **not** use `_running` if you also need `_walking` or `_sprinting`. This should be defined as an enumeration with clearly defined state names.
+Example: Do **not** use `running` if you also need `walking` or `sprinting`. This should be defined as an enumeration with clearly defined state names.
 
 <a name="3.1.6"></a>
 #### 3.1.6 Redudency with Considered Context 
@@ -500,8 +513,8 @@ Consider a script called `S_PlayerCharacter`.
 
 >**Bad**
 >
->* `_playerScore`
->* `_playerKills`
+>* `playerScore`
+>* `playerKills`
 >* `myTargetPlayer`
 >* `myCharacterName`
 >* `characterSkills`
@@ -511,8 +524,8 @@ All of these variables are named redundantly. It is implied that the variable is
 
 >**Good**
 >
->* `_score`
->* `_kills`
+>* `score`
+>* `kills`
 >* `targetPlayer`
 >* `name`
 >* `skills`
@@ -527,7 +540,7 @@ Strings and Lists are considered atomic in terms of style when working with C# s
 
 Atomic variables should not have their type name in their name.
 
-Example: Use `_score`, `_kills`, and `description` **not** `_scoreFloat`, `_floatKills`, `descriptionString`.
+Example: Use `score`, `kills`, and `description` **not** `scoreFloat`, `floatKills`, `descriptionString`.
 
 The only exception to this rule is when a variable represents 'a number of' something to be counted _and_ when using a name without a variable type is not easy to read.
 
@@ -544,7 +557,7 @@ These variables should include their type name while still considering their con
 
 If a class owns an instance of a complex variable, i.e. if a `S_PlayerCharacter` owns a `S_Gun`, it should be stored as the variable type as without any name modifications.
 
-Example: Use `hat`, `_flag`, and `ability` **not** `myHat`, `_myFlag`, and `playerAbility`.
+Example: Use `hat`, `flag`, and `ability` **not** `myHat`, `myFlag`, and `playerAbility`.
 
 If a class does not own the value a complex variable represents, you should use a noun along with the variable type.
 
@@ -555,7 +568,7 @@ Example: If a `S_Turret` has the ability to target a `S_PlayerCharacter`, it sho
 
 Arrays follow the same naming rules as above, but should be named as a plural noun.
 
-Example: Use `_targets`, `hats`, and `enemyPlayers`, **not** `_targetList`, `hatArray`, `enemyPlayerArray`.
+Example: Use `targets`, `hats`, and `enemyPlayers`, **not** `targetList`, `hatArray`, `enemyPlayerArray`.
 
 <a name="3.1.10"></a>
 #### 3.1.10 Inspector Editable Variables 
